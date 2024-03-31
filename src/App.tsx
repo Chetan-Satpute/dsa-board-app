@@ -1,14 +1,15 @@
+import {RouterProvider} from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import ThemeProvider from '@mui/material/styles/ThemeProvider';
 
-import HomeScreen from '$routes/HomeScreen';
 import theme from '$lib/theme';
+import router from '$lib/router';
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <HomeScreen />
+      <RouterProvider router={router} />
     </ThemeProvider>
   );
 }
