@@ -1,6 +1,6 @@
 function AlgorithmPanel() {
   return (
-    <div className="flex-1 flex justify-center items-center">
+    <div className="flex flex-1 items-center justify-center">
       <h1>Algorithm Panel</h1>
     </div>
   );

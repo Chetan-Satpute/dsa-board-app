@@ -2,14 +2,14 @@ import {Outlet} from 'react-router-dom';
 
 function StructureScreen() {
   return (
-    <div className="h-screen w-screen flex flex-col lg:flex-row">
-      <div className="w-full h-1/2 lg:w-3/5 lg:h-full">
+    <div className="flex h-screen w-screen flex-col lg:flex-row">
+      <div className="h-1/2 w-full lg:h-full lg:w-3/5">
         <div className="p-2">
-          <h1 className="text-xl m-0 text-center">DSA Board</h1>
+          <h1 className="m-0 text-center text-xl">DSA Board</h1>
         </div>
         <div></div>
       </div>
-      <div className="flex flex-col w-full h-1/2 lg:w-2/5 lg:h-full">
+      <div className="flex h-1/2 w-full flex-col lg:h-full lg:w-2/5">
         <Outlet />
       </div>
     </div>

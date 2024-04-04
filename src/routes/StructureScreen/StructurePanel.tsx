@@ -1,6 +1,6 @@
 function StructurePanel() {
   return (
-    <div className="flex-1 flex justify-center items-center">
+    <div className="flex flex-1 items-center justify-center">
       <h1>Structure Panel</h1>
     </div>
   );
