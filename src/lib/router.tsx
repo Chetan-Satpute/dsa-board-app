@@ -2,7 +2,8 @@ import {createBrowserRouter} from 'react-router-dom';
 
 import HomeScreen from '$routes/HomeScreen';
 import StructureScreen from '$routes/StructureScreen';
-import AlgorithmScreen from '$routes/AlgorhtmScreen';
+import AlgorithmPanel from '$routes/StructureScreen/AlgorithmPanel';
+import StructurePanel from '$routes/StructureScreen/StructurePanel';
 
 const router = createBrowserRouter([
   {
@@ -10,12 +11,18 @@ const router = createBrowserRouter([
     element: <HomeScreen />,
   },
   {
-    path: '/:structureId',
+    path: '/:structureId/',
     element: <StructureScreen />,
-  },
-  {
-    path: '/:structureId/:algorithmId',
-    element: <AlgorithmScreen />,
+    children: [
+      {
+        path: '',
+        element: <StructurePanel />,
+      },
+      {
+        path: ':algorithmId',
+        element: <AlgorithmPanel />,
+      },
+    ],
   },
 ]);
 
