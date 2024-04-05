@@ -1,13 +1,20 @@
+import {useRef} from 'react';
 import {Outlet} from 'react-router-dom';
 
+import Canvas from '$components/Canvas';
+
 function StructureScreen() {
+  const canvasContainerRef = useRef<HTMLDivElement>(null);
+
   return (
     <div className="flex h-screen w-screen flex-col lg:flex-row">
-      <div className="h-1/2 w-full lg:h-full lg:w-3/5">
+      <div className="flex h-1/2 w-full flex-col lg:h-full lg:w-3/5">
         <div className="p-2">
           <h1 className="m-0 text-center text-xl">DSA Board</h1>
         </div>
-        <div></div>
+        <div ref={canvasContainerRef} className="flex-1 overflow-hidden">
+          <Canvas containerRef={canvasContainerRef} />
+        </div>
       </div>
       <div className="flex h-1/2 w-full flex-col lg:h-full lg:w-2/5">
         <Outlet />

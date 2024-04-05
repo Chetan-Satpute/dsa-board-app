@@ -19,9 +19,10 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "$components/*": ["src/components/*"],
-      "$lib/*": ["src/lib/*"],
-      "$routes/*": ["src/routes/*"]
+      "$components/*": ["./src/components/*"],
+      "$hooks/*": ["./src/hooks/*"],
+      "$lib/*": ["./src/lib/*"],
+      "$routes/*": ["./src/routes/*"]
     }
   },
   "include": ["src"],
