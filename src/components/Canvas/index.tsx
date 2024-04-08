@@ -2,6 +2,7 @@ import {useCallback, useRef} from 'react';
 
 import useAnimationFrame from '$hooks/useAnimationFrame';
 import useCanvasInteraction from '$hooks/useCanvasInteraction';
+import {drawFrame} from '$lib/draw/frame';
 
 interface CanvasProps {
   containerRef: React.RefObject<HTMLDivElement>;
@@ -35,18 +36,24 @@ function Canvas(props: CanvasProps) {
       const ctx = canvas.getContext('2d');
 
       if (ctx) {
-        ctx.setTransform(transformMatrix);
-        ctx.arc(
-          container.clientWidth / 2,
-          container.clientHeight / 2,
-          Math.min(container.clientWidth, container.clientHeight) / 2,
-          0,
-          Math.PI * 2
-        );
-
         ctx.lineWidth = 2;
         ctx.strokeStyle = '#ffffff';
-        ctx.stroke();
+        ctx.fillStyle = '#ffffff';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.setTransform(transformMatrix);
+
+        drawFrame(ctx, {
+          nodes: [
+            {
+              x: 100,
+              y: 100,
+              corners: 0b1111,
+              value: 579,
+              color: '#ffffff',
+            },
+          ],
+        });
       }
     }
   }, [containerRef, canvasRef, transformMatrix]);
