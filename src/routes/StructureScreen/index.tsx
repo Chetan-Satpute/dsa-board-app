@@ -4,6 +4,8 @@ import {Outlet} from 'react-router-dom';
 import Canvas from '$components/Canvas';
 import {EdgeType} from '$lib/draw/edge';
 import {drawFrame} from '$lib/draw/frame';
+import {Label} from '$lib/draw/label';
+import {NODE_HEIGHT, NODE_WIDTH} from '$lib/draw/node';
 
 let angle = 0;
 
@@ -38,9 +40,17 @@ function StructureScreen() {
       type: EdgeType.BIDIRECTED,
     };
 
+    const label: Label = {
+      x: nodeA.x - NODE_WIDTH / 2,
+      y: nodeA.y + NODE_HEIGHT / 2,
+
+      text: 'array',
+    };
+
     drawFrame(ctx, {
       nodes: [nodeA, nodeB],
       edges: [edge],
+      labels: [label],
     });
   };
 
