@@ -7,8 +7,8 @@ interface GetStructureInfoResponse {
 }
 
 export async function getCanvasStructure(
-  name: string
+  structureId: string
 ): Promise<GetStructureInfoResponse> {
-  const response = await axiosInstance.get(`/random/${name}`);
+  const response = await axiosInstance.get(`/random/${structureId}`);
   return response.data;
 }

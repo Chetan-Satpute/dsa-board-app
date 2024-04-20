@@ -11,7 +11,9 @@ const placeholderMap: Record<AlgorithmParameterType, string> = {
   [AlgorithmParameterType.NumberArray]: '1,2,3,4,5',
 };
 
-interface AlgorithmCardProps extends Algorithm {}
+interface AlgorithmCardProps extends Algorithm {
+  animated: boolean;
+}
 
 function AlgorithmCard(props: AlgorithmCardProps) {
   const {name, parameters, animated} = props;
@@ -34,7 +36,7 @@ function AlgorithmCard(props: AlgorithmCardProps) {
       </CardContent>
       <CardActions className="flex !p-0">
         <Button
-          variant={animated ? 'contained' : 'outlined'}
+          variant={animated ? 'contained' : 'text'}
           className="flex-1 !rounded-t-none"
         >
           Run

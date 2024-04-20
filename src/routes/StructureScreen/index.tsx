@@ -10,7 +10,11 @@ function StructureScreen() {
     return <SomethingWentWrong />;
   }
 
-  return <StructureScreenContent structureId={structureId} />;
+  return (
+    <div className="flex h-screen w-screen">
+      <StructureScreenContent structureId={structureId} />
+    </div>
+  );
 }
 
 export default StructureScreen;
