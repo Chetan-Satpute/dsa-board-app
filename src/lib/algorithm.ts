@@ -3,8 +3,15 @@ export enum AlgorithmParameterType {
   NumberArray = 'number[]',
 }
 
+export interface AlgorithmParameter {
+  title: string;
+  type: AlgorithmParameterType;
+}
+
 export interface Algorithm {
   id: string;
   name: string;
-  parameters: {title: string; type: AlgorithmParameterType}[];
+  parameters: AlgorithmParameter[];
 }
+
+export type AlgorithmArgument = number | number[];
