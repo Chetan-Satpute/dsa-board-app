@@ -39,15 +39,18 @@ function StructurePaneContent(props: StructurePaneContentProps) {
   const modifyCards = data.modify.map(info => (
     <AlgorithmCard
       key={info.id}
-      id={info.id}
+      algorithmId={info.id}
       name={info.name}
       parameters={info.parameters}
-      animated={false}
+      isModify={true}
+      structureId={structureId}
     />
   ));
 
   const animateButtons = data.animate.map(info => (
-    <Button key={info.name} variant="outlined">{info.name}</Button>
+    <Button key={info.name} variant="outlined">
+      {info.name}
+    </Button>
   ));
 
   return (
@@ -55,12 +58,14 @@ function StructurePaneContent(props: StructurePaneContentProps) {
       {modifyCards.length > 0 && (
         <h4 className="text-center">Modify Structure</h4>
       )}
-      {modifyCards}
+
+      <div className="flex flex-col gap-2">{modifyCards}</div>
 
       {animateButtons.length > 0 && (
         <h4 className="text-center">Run Algorithm</h4>
       )}
-      {animateButtons}
+
+      <div className="flex flex-col gap-2">{animateButtons}</div>
     </div>
   );
 }

@@ -2,30 +2,34 @@ import {createSlice} from '@reduxjs/toolkit';
 
 import {Frame} from '$lib/draw/frame';
 import {createEmptyFrame} from '$lib/utils';
-import {setStructureFrameReducer} from './reducers';
+
+import {setLoadingReducer, setStructureFrameReducer} from './reducers';
 
 export interface RootSlice {
+  isLoading: boolean;
   isRunning: boolean;
 
   structureFrame: Frame;
-  structureData: unknown;
+  structureData: string;
 }
 
 const initialState: RootSlice = {
+  isLoading: false,
   isRunning: false,
 
   structureFrame: createEmptyFrame(),
-  structureData: null,
+  structureData: '',
 };
 
 const rootSlice = createSlice({
   name: 'root',
   initialState,
   reducers: {
+    setLoading: setLoadingReducer,
     setStructureFrame: setStructureFrameReducer,
   },
 });
 
-export const {setStructureFrame} = rootSlice.actions;
+export const {setStructureFrame, setLoading} = rootSlice.actions;
 
 export default rootSlice.reducer;

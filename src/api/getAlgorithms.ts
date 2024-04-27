@@ -9,6 +9,6 @@ interface GetAlgorithmInfoResponse {
 export async function getAlgorithmInfo(
   structureId: string
 ): Promise<GetAlgorithmInfoResponse> {
-  const response = await axiosInstance.get(`/algorithm/${structureId}`);
+  const response = await axiosInstance.get(`/${structureId}/algorithms`);
   return response.data;
 }
