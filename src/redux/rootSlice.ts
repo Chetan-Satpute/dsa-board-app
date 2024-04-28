@@ -15,7 +15,7 @@ export interface RootSlice {
 
 const initialState: RootSlice = {
   isLoading: false,
-  isRunning: false,
+  isRunning: true,
 
   structureFrame: createEmptyFrame(),
   structureData: '',
