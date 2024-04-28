@@ -19,7 +19,7 @@ export async function loadSteps(
       const steps = data.steps || [];
 
       if (steps.length !== 0) {
-        dispatch(appendSteps(data.steps));
+        dispatch(appendSteps(steps));
         currentPage++;
       } else {
         retry = false;

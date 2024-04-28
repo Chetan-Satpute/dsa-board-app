@@ -5,11 +5,12 @@ import {Step} from '$lib/step';
 import {createEmptyFrame} from '$lib/utils';
 
 import {
-    appendStepsReducer,
   setLoadingReducer,
+  appendStepsReducer,
   setStructureFrameReducer,
   startRunningReducer,
   stopRunningReducer,
+  updateCurrentStepReducer,
 } from './reducers';
 
 export interface RootSlice {
@@ -23,6 +24,7 @@ export interface RootSlice {
 
   steps: Step[];
   currentStep: number;
+  totalSteps: number;
 }
 
 const initialState: RootSlice = {
@@ -36,6 +38,7 @@ const initialState: RootSlice = {
 
   steps: [],
   currentStep: 0,
+  totalSteps: 0,
 };
 
 const rootSlice = createSlice({
@@ -47,10 +50,17 @@ const rootSlice = createSlice({
     startRunning: startRunningReducer,
     appendSteps: appendStepsReducer,
     stopRunning: stopRunningReducer,
+    updateCurrentStep: updateCurrentStepReducer,
   },
 });
 
-export const {setStructureFrame, setLoading, startRunning, appendSteps, stopRunning} =
-  rootSlice.actions;
+export const {
+  setStructureFrame,
+  setLoading,
+  startRunning,
+  appendSteps,
+  stopRunning,
+  updateCurrentStep,
+} = rootSlice.actions;
 
 export default rootSlice.reducer;

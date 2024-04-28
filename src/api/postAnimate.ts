@@ -2,6 +2,7 @@ import axiosInstance from '.';
 
 export interface PostAnimateResponseData {
   runId: string;
+  totalSteps: number;
 }
 
 export async function postAnimate(

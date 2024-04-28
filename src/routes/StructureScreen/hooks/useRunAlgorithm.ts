@@ -28,12 +28,14 @@ function useRunAlgorithm(
   });
 
   const {mutate: runAnimate, isPending: isAnimatePending} = useMutation({
+    gcTime: 0,
     mutationKey: ['animate', algorithmId],
     mutationFn: () =>
       postAnimate(structureId, algorithmId, structureData, args),
     onSuccess: data => {
-      dispatch(startRunning(data.runId));
+      dispatch(startRunning(data));
       dispatch(loadSteps);
+      dispatch(setLoading(false));
     },
     onError: () => {
       dispatch(setLoading(false));

@@ -7,9 +7,9 @@ import AlgorithmCard from '$components/AlgorithmCard';
 import CodeBlock from '$components/CodeBlock';
 import Loading from '$components/Loading';
 import NotFound from '$components/NotFound';
-import RunControls from '$components/RunControls';
 import SomethingWentWrong from '$components/SomethingWentWrong';
 import {useAppSelector} from '$hooks/redux';
+import AlgorithmRunningPannel from './AlgorithmRunningPannel';
 
 interface AlgorithmPanelContentProps {
   structureId: string;
@@ -46,26 +46,21 @@ function AlgorithmPanelContent(props: AlgorithmPanelContentProps) {
   return (
     <div className="flex min-h-0 flex-1 flex-col gap-4 p-2">
       {isRunning ? (
-        <RunControls />
+        <AlgorithmRunningPannel code={code} />
       ) : (
-        <AlgorithmCard
-          structureId={structureId}
-          algorithmId={algorithmId}
-          name={algorithm.name}
-          isModify={false}
-          parameters={algorithm.parameters}
-        />
-      )}
+        <>
+          <AlgorithmCard
+            structureId={structureId}
+            algorithmId={algorithmId}
+            name={algorithm.name}
+            isModify={false}
+            parameters={algorithm.parameters}
+          />
 
-      <Card className="flex-1 !overflow-auto font-ubuntu">
-        <CodeBlock text={code} />
-      </Card>
-
-      {isRunning && (
-        <Card className="h-1/6 !overflow-auto p-2 font-ubuntu">
-          <CodeBlock text="linearSearch(target=5)" hlLines={[0]} />
-          <CodeBlock text="linearSearch(target=5)" />
-        </Card>
+          <Card className="flex-1 !overflow-auto font-ubuntu">
+            <CodeBlock text={code} />
+          </Card>
+        </>
       )}
     </div>
   );

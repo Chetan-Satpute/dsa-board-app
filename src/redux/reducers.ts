@@ -20,13 +20,17 @@ export function setStructureFrameReducer(
 
 export function startRunningReducer(
   state: RootSlice,
-  action: PayloadAction<string>
+  action: PayloadAction<{runId: string; totalSteps: number}>
 ) {
   state.isRunning = true;
-  state.runId = action.payload;
+  state.runId = action.payload.runId;
+  state.totalSteps = action.payload.totalSteps;
 }
 
-export function appendStepsReducer(state: RootSlice, action: PayloadAction<Step[]>) {
+export function appendStepsReducer(
+  state: RootSlice,
+  action: PayloadAction<Step[]>
+) {
   state.steps = [...state.steps, ...action.payload];
 }
 
@@ -34,4 +38,23 @@ export function stopRunningReducer(state: RootSlice) {
   state.isRunning = false;
   state.runId = '';
   state.steps = [];
+  state.currentStep = 0;
+}
+
+export function updateCurrentStepReducer(
+  state: RootSlice,
+  action: PayloadAction<number>
+) {
+  const diff = action.payload;
+
+  if (diff > 0) {
+    state.currentStep = Math.min(
+      state.currentStep + diff,
+      state.totalSteps - 1
+    );
+  }
+
+  if (diff < 0) {
+    state.currentStep = Math.max(0, state.currentStep + diff);
+  }
 }
