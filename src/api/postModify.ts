@@ -2,7 +2,7 @@ import {Frame} from '$lib/draw/frame';
 
 import axiosInstance from '.';
 
-interface PostModifyResponseData {
+export interface PostModifyResponseData {
   structureFrame: Frame;
   structureData: string;
 }

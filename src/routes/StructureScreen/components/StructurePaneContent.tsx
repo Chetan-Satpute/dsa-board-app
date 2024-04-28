@@ -7,6 +7,7 @@ import AlgorithmCard from '$components/AlgorithmCard';
 import Loading from '$components/Loading';
 import NotFound from '$components/NotFound';
 import SomethingWentWrong from '$components/SomethingWentWrong';
+import {useNavigate} from 'react-router-dom';
 
 interface StructurePaneContentProps {
   structureId: string;
@@ -15,6 +16,7 @@ interface StructurePaneContentProps {
 function StructurePaneContent(props: StructurePaneContentProps) {
   const {structureId} = props;
 
+  const navigate = useNavigate();
   const {data, isLoading, error, isError} = useQuery({
     queryKey: ['algorithm-info', structureId],
     queryFn: () => getAlgorithmInfo(structureId),
@@ -48,7 +50,11 @@ function StructurePaneContent(props: StructurePaneContentProps) {
   ));
 
   const animateButtons = data.animate.map(info => (
-    <Button key={info.name} variant="outlined">
+    <Button
+      key={info.name}
+      variant="outlined"
+      onClick={() => navigate(`/${structureId}/${info.id}`)}
+    >
       {info.name}
     </Button>
   ));

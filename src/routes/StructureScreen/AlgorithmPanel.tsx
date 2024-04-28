@@ -1,14 +1,20 @@
-import Button from '@mui/material/Button';
-import {useNavigate} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
+
+import AlgorithmPanelContent from './components/AlgorithmPanelContent';
+import SomethingWentWrong from '$components/SomethingWentWrong';
 
 function AlgorithmPanel() {
-  const navigate = useNavigate();
+  const {structureId, algorithmId} = useParams();
+
+  if (!structureId || !algorithmId) {
+    return <SomethingWentWrong />;
+  }
 
   return (
-    <div className="flex flex-1 items-center justify-center">
-      <h1>Algorithm Panel</h1>
-      <Button onClick={() => navigate('/array')}>Structure Page</Button>
-    </div>
+    <AlgorithmPanelContent
+      structureId={structureId}
+      algorithmId={algorithmId}
+    />
   );
 }
 
