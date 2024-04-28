@@ -61,10 +61,12 @@ function AlgorithmPanelContent(props: AlgorithmPanelContentProps) {
         <CodeBlock text={code} />
       </Card>
 
-      <Card className="h-1/6 !overflow-auto p-2 font-ubuntu">
-        <CodeBlock text="linearSearch(target=5)" hlLines={[0]} />
-        <CodeBlock text="linearSearch(target=5)" />
-      </Card>
+      {isRunning && (
+        <Card className="h-1/6 !overflow-auto p-2 font-ubuntu">
+          <CodeBlock text="linearSearch(target=5)" hlLines={[0]} />
+          <CodeBlock text="linearSearch(target=5)" />
+        </Card>
+      )}
     </div>
   );
 }

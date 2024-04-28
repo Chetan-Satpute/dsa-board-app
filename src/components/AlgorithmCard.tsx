@@ -35,7 +35,7 @@ function AlgorithmCard(props: AlgorithmCardProps) {
     getArgumentsFromParameters(parameters)
   );
 
-  const {handleRunModify, isPending} = useRunAlgorithm(
+  const {handleRunModify, handleRunAnimate, isPending} = useRunAlgorithm(
     structureId,
     algorithmId,
     args
@@ -82,7 +82,7 @@ function AlgorithmCard(props: AlgorithmCardProps) {
         <Button
           variant={isModify ? 'text' : 'contained'}
           className="flex-1 !rounded-t-none"
-          onClick={handleRunModify}
+          onClick={isModify ? handleRunModify : handleRunAnimate}
           disabled={appLoading}
         >
           {isPending ? <CircularProgress size={20} /> : 'Run'}

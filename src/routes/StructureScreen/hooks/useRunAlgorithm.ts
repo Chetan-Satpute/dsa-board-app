@@ -3,7 +3,9 @@ import {useMutation} from '@tanstack/react-query';
 import {useAppDispatch, useAppSelector} from '$hooks/redux';
 import {AlgorithmArgument} from '$lib/algorithm';
 import {postModify} from '$api/postModify';
-import {setLoading, setStructureFrame} from '$redux/rootSlice';
+import {setLoading, setStructureFrame, startRunning} from '$redux/rootSlice';
+import {postAnimate} from '$api/postAnimate';
+import {loadSteps} from '$redux/thunks';
 
 function useRunAlgorithm(
   structureId: string,
@@ -13,7 +15,7 @@ function useRunAlgorithm(
   const structureData = useAppSelector(state => state.structureData);
   const dispatch = useAppDispatch();
 
-  const {mutate: runModify, isPending: isPendingModify} = useMutation({
+  const {mutate: runModify, isPending: isModifyPending} = useMutation({
     mutationKey: ['modify', algorithmId],
     mutationFn: () => postModify(structureId, algorithmId, structureData, args),
     onSuccess: data => {
@@ -25,14 +27,33 @@ function useRunAlgorithm(
     },
   });
 
+  const {mutate: runAnimate, isPending: isAnimatePending} = useMutation({
+    mutationKey: ['animate', algorithmId],
+    mutationFn: () =>
+      postAnimate(structureId, algorithmId, structureData, args),
+    onSuccess: data => {
+      dispatch(startRunning(data.runId));
+      dispatch(loadSteps);
+    },
+    onError: () => {
+      dispatch(setLoading(false));
+    },
+  });
+
   const handleRunModify = () => {
     dispatch(setLoading(true));
     runModify();
   };
 
+  const handleRunAnimate = () => {
+    dispatch(setLoading(true));
+    runAnimate();
+  };
+
   return {
     handleRunModify,
-    isPending: isPendingModify,
+    handleRunAnimate,
+    isPending: isModifyPending || isAnimatePending,
   };
 }
 
