@@ -11,7 +11,7 @@ function StructureScreen() {
   }
 
   return (
-    <div className="flex h-screen w-screen">
+    <div className="flex h-screen w-screen min-w-0">
       <StructureScreenContent structureId={structureId} />
     </div>
   );

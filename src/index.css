@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#root {
+  @apply select-none;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.code-line-base {
+  @apply m-0 border-y-0 border-l-4 border-r-0 border-solid pl-2;
+}
+
+.code-line {
+  @apply code-line-base border-transparent;
+}
+
+.highlighted-code-line {
+  @apply code-line-base border-blue-500 bg-white/10;
+}

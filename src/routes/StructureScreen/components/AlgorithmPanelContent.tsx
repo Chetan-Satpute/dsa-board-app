@@ -6,6 +6,7 @@ import Loading from '$components/Loading';
 import NotFound from '$components/NotFound';
 import SomethingWentWrong from '$components/SomethingWentWrong';
 import AlgorithmCard from '$components/AlgorithmCard';
+import CodeBlock from '$components/CodeBlock';
 
 interface AlgorithmPanelContentProps {
   structureId: string;
@@ -36,10 +37,10 @@ function AlgorithmPanelContent(props: AlgorithmPanelContentProps) {
     return <SomethingWentWrong />;
   }
 
-  const {algorithm} = data;
+  const {algorithm, code} = data;
 
   return (
-    <div className="flex flex-1 flex-col p-2">
+    <div className="flex flex-1 flex-col gap-4 p-2">
       <AlgorithmCard
         structureId={structureId}
         algorithmId={algorithmId}
@@ -47,6 +48,10 @@ function AlgorithmPanelContent(props: AlgorithmPanelContentProps) {
         isModify={false}
         parameters={algorithm.parameters}
       />
+
+      <div className="font-ubuntu flex-1 overflow-auto bg-[#1e1e1e]">
+        <CodeBlock text={code} hlLines={[1]} />
+      </div>
     </div>
   );
 }
