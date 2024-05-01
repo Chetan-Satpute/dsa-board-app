@@ -53,7 +53,7 @@ function StructureScreenContent(props: StructureScreenContentProps) {
     <div className="flex min-w-0 flex-1 flex-col lg:flex-row">
       <div className="flex h-1/2 w-full flex-col lg:h-full lg:w-3/5">
         <div className="p-2">
-          <h1 className="m-0 text-center text-xl">DSA Board</h1>
+          <h1 className="m-0 text-center text-xl font-marker">DSA Board</h1>
         </div>
         <div ref={canvasContainerRef} className="flex-1 overflow-hidden">
           <Canvas containerRef={canvasContainerRef} draw={drawCanvas} />

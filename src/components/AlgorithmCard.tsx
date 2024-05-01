@@ -75,7 +75,7 @@ function AlgorithmCard(props: AlgorithmCardProps) {
   return (
     <Card>
       <CardContent className="flex flex-col gap-1 p-1">
-        <p className="m-0 font-bold">{name}</p>
+        <span className="font-kalam font-bold">{name}</span>
         {parameterFields}
       </CardContent>
       <CardActions className="flex !p-0">

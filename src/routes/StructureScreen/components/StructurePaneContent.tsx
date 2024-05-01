@@ -62,13 +62,13 @@ function StructurePaneContent(props: StructurePaneContentProps) {
   return (
     <div className="flex flex-1 flex-col p-2">
       {modifyCards.length > 0 && (
-        <h4 className="text-center">Modify Structure</h4>
+        <h4 className="text-center font-kalam">Modify Structure</h4>
       )}
 
       <div className="flex flex-col gap-2">{modifyCards}</div>
 
       {animateButtons.length > 0 && (
-        <h4 className="text-center">Run Algorithm</h4>
+        <h4 className="text-center font-kalam">Run Algorithm</h4>
       )}
 
       <div className="flex flex-col gap-2">{animateButtons}</div>

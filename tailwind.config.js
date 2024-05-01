@@ -5,7 +5,9 @@ export default {
     extend: {
       fontFamily: {
         ubuntu: 'Ubuntu Mono',
-      }
+        marker: 'Permanent Marker',
+        kalam: 'Kalam',
+      },
     },
   },
   corePlugins: {
