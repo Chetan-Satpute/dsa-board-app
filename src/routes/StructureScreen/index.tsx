@@ -6,13 +6,13 @@ import StructureScreenContent from './components/StructureScreenContent';
 function StructureScreen() {
   const {structureId} = useParams();
 
-  if (!structureId) {
-    return <SomethingWentWrong />;
-  }
-
   return (
     <div className="flex h-screen w-screen min-w-0">
-      <StructureScreenContent structureId={structureId} />
+      {structureId ? (
+        <StructureScreenContent structureId={structureId} />
+      ) : (
+        <SomethingWentWrong />
+      )}
     </div>
   );
 }

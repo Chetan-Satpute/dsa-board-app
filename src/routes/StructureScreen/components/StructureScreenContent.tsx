@@ -42,7 +42,7 @@ function StructureScreenContent(props: StructureScreenContentProps) {
     error instanceof AxiosError &&
     error.response?.status === 404
   ) {
-    return <NotFound message={`Structure not found: ${structureId}`} />;
+    return <NotFound target="structure" />;
   }
 
   if (!data || isError) {
@@ -50,7 +50,7 @@ function StructureScreenContent(props: StructureScreenContentProps) {
   }
 
   return (
-    <div className="flex flex-1 flex-col lg:flex-row min-w-0">
+    <div className="flex min-w-0 flex-1 flex-col lg:flex-row">
       <div className="flex h-1/2 w-full flex-col lg:h-full lg:w-3/5">
         <div className="p-2">
           <h1 className="m-0 text-center text-xl">DSA Board</h1>

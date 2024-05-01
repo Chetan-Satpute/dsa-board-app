@@ -34,7 +34,7 @@ function AlgorithmPanelContent(props: AlgorithmPanelContentProps) {
     error instanceof AxiosError &&
     error.response?.status === 404
   ) {
-    return <NotFound message={`Structure not found: ${structureId}`} />;
+    return <NotFound target="algorithm" />;
   }
 
   if (!data || isError) {
