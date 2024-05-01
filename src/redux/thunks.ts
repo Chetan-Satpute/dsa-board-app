@@ -1,7 +1,7 @@
 import {Action, ThunkDispatch} from '@reduxjs/toolkit';
 
-import {RootSlice, appendSteps, stopRunning} from './rootSlice';
 import {getSteps} from '$api/getSteps';
+import {RootSlice, appendSteps, stopRunning} from './rootSlice';
 
 export async function loadSteps(
   dispatch: ThunkDispatch<RootSlice, void, Action>,
