@@ -1,6 +1,8 @@
 import {AxiosError} from 'axios';
 import {useEffect, useRef} from 'react';
-import {Outlet} from 'react-router-dom';
+import {Outlet, useNavigate} from 'react-router-dom';
+import ArrowBackRounded from '@mui/icons-material/ArrowBackRounded';
+import IconButton from '@mui/material/IconButton';
 import {useQuery} from '@tanstack/react-query';
 
 import {getCanvasStructure} from '$api/getStructure';
@@ -11,6 +13,7 @@ import SomethingWentWrong from '$components/SomethingWentWrong';
 import {useAppDispatch} from '$hooks/redux';
 import {drawCanvas} from '$lib/draw';
 import {setStructureFrame} from '$redux/rootSlice';
+import FullScreenButton from '$components/FullscreenButton';
 
 interface StructureScreenContentProps {
   structureId: string;
@@ -18,6 +21,8 @@ interface StructureScreenContentProps {
 
 function StructureScreenContent(props: StructureScreenContentProps) {
   const {structureId} = props;
+
+  const navigate = useNavigate();
 
   const canvasContainerRef = useRef<HTMLDivElement>(null);
   const dispatch = useAppDispatch();
@@ -49,11 +54,21 @@ function StructureScreenContent(props: StructureScreenContentProps) {
     return <SomethingWentWrong />;
   }
 
+  const handleBackNavigation = () => {
+    navigate(-1);
+  };
+
   return (
     <div className="flex min-w-0 flex-1 flex-col lg:flex-row">
       <div className="flex h-1/2 w-full flex-col lg:h-full lg:w-3/5">
-        <div className="p-2">
-          <h1 className="m-0 text-center text-xl font-marker">DSA Board</h1>
+        <div className="flex justify-between p-2">
+          <IconButton onClick={handleBackNavigation}>
+            <ArrowBackRounded />
+          </IconButton>
+          <h1 className="m-0 text-center font-marker text-xl">DSA Board</h1>
+          <div>
+            <FullScreenButton />
+          </div>
         </div>
         <div ref={canvasContainerRef} className="flex-1 overflow-hidden">
           <Canvas containerRef={canvasContainerRef} draw={drawCanvas} />
