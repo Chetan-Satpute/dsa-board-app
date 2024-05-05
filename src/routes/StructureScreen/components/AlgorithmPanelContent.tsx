@@ -20,7 +20,7 @@ function AlgorithmPanelContent(props: AlgorithmPanelContentProps) {
   const {structureId, algorithmId} = props;
 
   const isRunning = useAppSelector(state => state.isRunning);
-  const {data, isLoading, isError, error} = useQuery({
+  const {data, isLoading, isError, error, refetch} = useQuery({
     queryKey: ['animate-algorithm', structureId, algorithmId],
     queryFn: () => getAnimateAlgorithm(structureId, algorithmId),
   });
@@ -38,7 +38,7 @@ function AlgorithmPanelContent(props: AlgorithmPanelContentProps) {
   }
 
   if (!data || isError) {
-    return <SomethingWentWrong />;
+    return <SomethingWentWrong onRetry={refetch} />;
   }
 
   const {algorithm, code} = data;

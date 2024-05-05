@@ -1,4 +1,4 @@
-import {Card} from '@mui/material';
+import Card from '@mui/material/Card';
 
 import CodeBlock from '$components/CodeBlock';
 import RunControls from '$components/RunControls';

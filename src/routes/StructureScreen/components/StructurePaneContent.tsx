@@ -17,7 +17,7 @@ function StructurePaneContent(props: StructurePaneContentProps) {
   const {structureId} = props;
 
   const navigate = useNavigate();
-  const {data, isLoading, error, isError} = useQuery({
+  const {data, isLoading, error, isError, refetch} = useQuery({
     queryKey: ['algorithm-info', structureId],
     queryFn: () => getAlgorithmInfo(structureId),
   });
@@ -35,7 +35,7 @@ function StructurePaneContent(props: StructurePaneContentProps) {
   }
 
   if (!data || isError) {
-    return <SomethingWentWrong />;
+    return <SomethingWentWrong onRetry={refetch} />;
   }
 
   const modifyCards = data.modify.map(info => (

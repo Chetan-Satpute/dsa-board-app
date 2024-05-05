@@ -18,7 +18,7 @@ export async function loadSteps(
       const data = await getSteps(runId, currentPage);
       const steps = data.steps || [];
 
-      if (steps.length !== 0) {
+      if (steps.length !== 0 && runId === getState().runId) {
         dispatch(appendSteps(steps));
         currentPage++;
       } else {

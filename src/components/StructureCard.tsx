@@ -1,4 +1,5 @@
-import {Button, Card} from '@mui/material';
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
 
 interface StructureCardProps {
   title: string;
@@ -10,16 +11,12 @@ function StructureCard(props: StructureCardProps) {
   const {title, image, onClick} = props;
 
   return (
-    <Card>
-      <div className="p-1">
+    <Card className="!bg-none">
+      <div className="overflow-auto p-1">
         <img src={image} />
       </div>
       <div>
-        <Button
-          variant="contained"
-          className="w-full !rounded-t-none"
-          onClick={onClick}
-        >
+        <Button variant="contained" className="w-full" onClick={onClick}>
           {title}
         </Button>
       </div>

@@ -22,13 +22,17 @@ function CodeBlock(props: Props) {
       <p
         key={index + lineHtml}
         dangerouslySetInnerHTML={{__html: lineHtml}}
-        className={isHighlighted ? 'font-ubuntu highlighted-code-line' : 'font-ubuntu code-line'}
+        className={
+          isHighlighted
+            ? 'highlighted-code-line font-ubuntu'
+            : 'code-line font-ubuntu'
+        }
       />
     );
   });
 
   return (
-    <pre className="font-ubuntu no-scrollbar m-0 flex">
+    <pre className="no-scrollbar m-0 flex font-ubuntu">
       <code className="flex-1">{lines}</code>
     </pre>
   );

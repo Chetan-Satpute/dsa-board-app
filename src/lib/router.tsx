@@ -2,7 +2,6 @@ import {createBrowserRouter} from 'react-router-dom';
 
 import HomeScreen from '$routes/HomeScreen';
 import StructureScreen from '$routes/StructureScreen';
-import AlgorithmPanel from '$routes/StructureScreen/AlgorithmPanel';
 import StructurePanel from '$routes/StructureScreen/StructurePanel';
 
 const router = createBrowserRouter([
@@ -20,7 +19,10 @@ const router = createBrowserRouter([
       },
       {
         path: ':algorithmId',
-        element: <AlgorithmPanel />,
+        lazy: async () => ({
+          Component: (await import('$routes/StructureScreen/AlgorithmPanel'))
+            .default,
+        }),
       },
     ],
   },
