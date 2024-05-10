@@ -1,11 +1,11 @@
-import {createBrowserRouter} from 'react-router-dom';
+import {createHashRouter} from 'react-router-dom';
 
 import ConnectServerScreen from '$routes/ConnectServerScreen';
 import HomeScreen from '$routes/HomeScreen';
 import StructureScreen from '$routes/StructureScreen';
 import StructurePanel from '$routes/StructureScreen/StructurePanel';
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: '/',
     element: <ConnectServerScreen />,
