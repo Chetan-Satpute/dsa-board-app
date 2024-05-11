@@ -1,9 +1,21 @@
-import {createHashRouter} from 'react-router-dom';
+import {Suspense, lazy} from 'react';
+import {RouterProvider, createHashRouter} from 'react-router-dom';
 
 import ConnectServerScreen from '$routes/ConnectServerScreen';
-import HomeScreen from '$routes/HomeScreen';
-import StructureScreen from '$routes/StructureScreen';
-import StructurePanel from '$routes/StructureScreen/StructurePanel';
+
+const HomeScreenPromise = import('$routes/HomeScreen');
+const HomeScreen = lazy(() => HomeScreenPromise);
+
+const StructureScreenPromise = import('$routes/StructureScreen');
+const StructureScreen = lazy(() => StructureScreenPromise);
+
+const AlgorithmPanelPromise = import('$routes/StructureScreen/AlgorithmPanel');
+const AlgorithmPanel = lazy(() => AlgorithmPanelPromise);
+
+const StructurePanelPromise = import('$routes/StructureScreen/StructurePanel');
+const StructurePanel = lazy(() => StructurePanelPromise);
+
+import Loading from '$components/Loading';
 
 const router = createHashRouter([
   {
@@ -12,23 +24,35 @@ const router = createHashRouter([
     children: [
       {
         path: '',
-        element: <HomeScreen />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <HomeScreen />
+          </Suspense>
+        ),
       },
       {
         path: '/:structureId/',
-        element: <StructureScreen />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <StructureScreen />
+          </Suspense>
+        ),
         children: [
           {
             path: '',
-            element: <StructurePanel />,
+            element: (
+              <Suspense fallback={<Loading />}>
+                <StructurePanel />
+              </Suspense>
+            ),
           },
           {
             path: ':algorithmId',
-            lazy: async () => ({
-              Component: (
-                await import('$routes/StructureScreen/AlgorithmPanel')
-              ).default,
-            }),
+            element: (
+              <Suspense fallback={<Loading />}>
+                <AlgorithmPanel />
+              </Suspense>
+            ),
           },
         ],
       },
@@ -36,4 +60,11 @@ const router = createHashRouter([
   },
 ]);
 
-export default router;
+// cannot export router directly
+// eslint gives a false positive warning about fast refresh
+// https://github.com/ArnaudBarre/eslint-plugin-react-refresh/issues/25
+function Router() {
+  return <RouterProvider router={router} />;
+}
+
+export default Router;
