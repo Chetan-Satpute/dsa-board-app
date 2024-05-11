@@ -1,5 +1,3 @@
-import Alert from '@mui/material/Alert';
-
 import FullScreenButton from '$components/FullscreenButton';
 
 import StructureCardSection from './components/StructureCardSection';
@@ -16,16 +14,7 @@ function HomeScreen() {
           Interactive Exploration of Algorithms & Data Structures
         </p>
 
-        {document.fullscreenEnabled && (
-          <div className="flex flex-col items-center justify-center">
-            <Alert variant="outlined" severity="info">
-              <p className="mb-2 mt-0">
-                We recommend using fullscreen mode for best experience.
-              </p>
-              <FullScreenButton long />
-            </Alert>
-          </div>
-        )}
+        <FullScreenButton long />
       </div>
 
       <StructureCardSection />

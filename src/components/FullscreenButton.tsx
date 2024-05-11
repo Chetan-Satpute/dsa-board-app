@@ -38,7 +38,7 @@ function FullScreenButton(props: FullscreenButtonProps) {
 
   if (long) {
     return (
-      <Button className="gap-2" onClick={toggleFullscreen}>
+      <Button className="gap-2" variant="outlined" onClick={toggleFullscreen}>
         {isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
         {isFullscreen ? <FullscreenExitRounded /> : <FullscreenRounded />}
       </Button>
