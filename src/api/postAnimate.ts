@@ -1,8 +1,11 @@
+import {Frame} from '$lib/draw/frame';
 import axiosInstance from '.';
 
 export interface PostAnimateResponseData {
   runId: string;
   totalSteps: number;
+  structureFrame: Frame;
+  structureData: string;
 }
 
 export async function postAnimate(

@@ -20,11 +20,18 @@ export function setStructureFrameReducer(
 
 export function startRunningReducer(
   state: RootSlice,
-  action: PayloadAction<{runId: string; totalSteps: number}>
+  action: PayloadAction<{
+    runId: string;
+    totalSteps: number;
+    structureFrame: Frame;
+    structureData: string;
+  }>
 ) {
   state.isRunning = true;
   state.runId = action.payload.runId;
   state.totalSteps = action.payload.totalSteps;
+  state.structureFrame = action.payload.structureFrame;
+  state.structureData = action.payload.structureData;
 }
 
 export function appendStepsReducer(
